@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @EnableAutoConfiguration
 public class CalendarDemo {
-    
+
     @RequestMapping("/")
     String home() {
         return "Hello World!";
