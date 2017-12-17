@@ -1,9 +1,11 @@
 package com.calendarproject.model;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CalendarEvent {
+    private int id;
     private SimpleCalendar calendar;
     private String title;
     private Date eventDate;
@@ -11,6 +13,9 @@ public class CalendarEvent {
     private List<String> guests;
     private Date reminderDate;
     private Boolean isReminderSent;
+
+    public void setId(int id){ this.id = id;}
+    public int getId(){ return id; }
 
     public void setCalendar(SimpleCalendar calendar){ this.calendar = calendar;}
     public SimpleCalendar getCalendar(){ return calendar; }
@@ -35,13 +40,16 @@ public class CalendarEvent {
     public void setIsReminderSent(Boolean isReminderSent){ this.isReminderSent = isReminderSent;}
     public Boolean getIsReminderSent(){ return isReminderSent; }
 
-    public CalendarEvent(SimpleCalendar calendar, String title, Date eventDate,
+    public CalendarEvent(int id, SimpleCalendar calendar, String title, Date eventDate,
                          String location, List<String> guests, Date reminderDate, Boolean isReminderSent){
+        this.id = id;
         this.calendar = calendar;
         this.title = title;
         this.eventDate = eventDate;
         this.location = location;
-        this.guests = guests;
+        if(guests != null) {
+            this.guests = guests;
+        }else { this.guests = new ArrayList<String>(); }
         this.reminderDate = reminderDate;
         this.isReminderSent = isReminderSent;
     }
