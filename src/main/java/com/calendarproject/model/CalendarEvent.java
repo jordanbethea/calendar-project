@@ -4,18 +4,35 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.ElementCollection;
+import javax.persistence.FetchType;
+
+@Entity
 public class CalendarEvent {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+    @ManyToOne(fetch = FetchType.EAGER)
     private SimpleCalendar calendar;
+
+    //lazy initialization is more efficient, but I'm not sure the proper way to implement it as yet, that would be a todo
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> guests;
+
     private String title;
     private Date eventDate;
     private String location;
-    private List<String> guests;
     private Date reminderDate;
     private Boolean isReminderSent;
 
-    public void setId(int id){ this.id = id;}
-    public int getId(){ return id; }
+    public void setId(long id){ this.id = id;}
+    public long getId(){ return id; }
 
     public void setCalendar(SimpleCalendar calendar){ this.calendar = calendar;}
     public SimpleCalendar getCalendar(){ return calendar; }
@@ -40,9 +57,10 @@ public class CalendarEvent {
     public void setIsReminderSent(Boolean isReminderSent){ this.isReminderSent = isReminderSent;}
     public Boolean getIsReminderSent(){ return isReminderSent; }
 
-    public CalendarEvent(int id, SimpleCalendar calendar, String title, Date eventDate,
+    protected CalendarEvent(){}
+
+    public CalendarEvent(SimpleCalendar calendar, String title, Date eventDate,
                          String location, List<String> guests, Date reminderDate, Boolean isReminderSent){
-        this.id = id;
         this.calendar = calendar;
         this.title = title;
         this.eventDate = eventDate;
@@ -52,5 +70,13 @@ public class CalendarEvent {
         }else { this.guests = new ArrayList<String>(); }
         this.reminderDate = reminderDate;
         this.isReminderSent = isReminderSent;
+    }
+
+    public String toString(){
+        String format = "CalendarEvent(Calendar name: %1$s, Event Title: %2$s, Date %3$s, Location: %4$s, Reminder: %5$s,"+
+                " Is Reminder Sent: %6$b, Guests: %7$s";
+        String output = String.format(format, calendar.getName(),title,eventDate,location,reminderDate,
+                isReminderSent,guests);
+        return output;
     }
 }
