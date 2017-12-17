@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class CalendarEvent {
@@ -18,6 +20,7 @@ public class CalendarEvent {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private SimpleCalendar calendar;
 

@@ -25,6 +25,8 @@ hs_err_pid*
 
 #intellij project files
 .idea
+/CalendarSystem.iml
 
 #maven generated files
 target/*
+

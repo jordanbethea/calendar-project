@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.FetchType;
 
 @Entity
@@ -16,6 +17,8 @@ public class SimpleCalendar {
 
     public void setEvents(List<CalendarEvent> events){ this.events = events;}
     public List<CalendarEvent> getEvents(){ return events; }
+
+    public void addEvent(CalendarEvent event){ events.add(event);}
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -36,6 +39,7 @@ public class SimpleCalendar {
     protected SimpleCalendar(){}
 
     public SimpleCalendar(String name, String user){
+        this.events = new ArrayList<CalendarEvent>();
         this.name = name;
         this.user = user;
     }
