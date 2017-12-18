@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Calendar and Events</h1>
+    <a th:href="@{/calendar/{id}/event/new(id=${calendar.id})}">Create new event for this calendar</a>
     <p th:if="${calendar} == null" th:text="There is no calendar with that id">No Calendar</p>
     <div th:if="${calendar} != null">
         <p th:text="${calendar.name}">Name</p>

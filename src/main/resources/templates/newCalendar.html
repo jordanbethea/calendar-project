@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Calendar</title>
+</head>
+<body>
+    <h1>Create new Calendar</h1>
+    <form action="newCalendar.html" th:action="@{/calendar/create}" method="post">
+        <fieldset>
+            <input type="text" name="name"/>
+            <input type="text" name="user"/>
+            <input type="submit" value="create"/>
+        </fieldset>
+    </form>
+</body>
+</html>
