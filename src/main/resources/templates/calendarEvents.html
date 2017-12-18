@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar Info</title>
+</head>
+<body>
+    <h1>Calendar and Events</h1>
+    <p th:if="${calendar} == null" th:text="There is no calendar with that id">No Calendar</p>
+    <div th:if="${calendar} != null">
+        <p th:text="${calendar.name}">Name</p>
+        <p th:text="${calendar.user}">User</p>
+        <p th:text="${#lists.size(calendar.events)}">Num Events</p>
+        <table>
+            <tr>
+                <td>Title</td>
+                <td>Event Date</td>
+                <td>Location</td>
+                <td>Reminder Date</td>
+                <td>Is Reminder Sent</td>
+                <td>Guests</td>
+            </tr>
+            <tr th:each="event : ${calendar.events}">
+                <td th:text="${event.title}">Title</td>
+                <td th:text="${event.eventDate}">Date</td>
+                <td th:text="${event.location}">Location</td>
+                <td th:text="${event.reminderDate}">Reminder Date</td>
+                <td th:text="${event.isReminderSent}">Is Reminder Sent</td>
+                <td>
+                    <ul>
+                       <li th:each="guest : ${event.guestList}"><p th:text="${guest}"></p></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

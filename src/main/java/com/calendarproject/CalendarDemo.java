@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
 
 @SpringBootApplication
@@ -28,10 +30,12 @@ public class CalendarDemo {
         return (args) -> {
 
             SimpleCalendar testCal1 = new SimpleCalendar("Space Events", "Han Solo");
+            HashSet<String> guests = new HashSet<String>();
+            guests.add("Leia");
+            //guests.add("Chewie");
+            //guests.add("Luke");
             CalendarEvent testCal1Ev1 = new CalendarEvent(testCal1, "Falcon Tuneup", new Date(), "Mos Eisley",
-                    null, new Date(), false);
-            testCal1Ev1.addGuest("Leia");
-            testCal1Ev1.addGuest("Chewie");
+                    guests, new Date(), false);
 
             repository.save(testCal1);
             eRepository.save(testCal1Ev1);
@@ -42,7 +46,7 @@ public class CalendarDemo {
             testCal2Ev1.addGuest("Brody");
             CalendarEvent testCal2Ev2 = new CalendarEvent(testCal2, "Punch Nazis", new Date(), "Outside",
                     null, new Date(), false);
-            testCal2Ev1.addGuest("Nazis");
+            testCal2Ev2.addGuest("Nazis");
 
             repository.save(testCal2);
             eRepository.save(testCal2Ev1);

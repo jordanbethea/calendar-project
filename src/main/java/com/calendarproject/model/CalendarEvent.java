@@ -1,7 +1,7 @@
 package com.calendarproject.model;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ public class CalendarEvent {
 
     //lazy initialization is more efficient, but I'm not sure the proper way to implement it as yet, that would be a todo
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> guests;
+    private Set<String> guests;
 
     private String title;
     private Date eventDate;
@@ -49,8 +49,8 @@ public class CalendarEvent {
     public void setLocation(String location){ this.location = location; }
     public String getLocation(){ return location; }
 
-    public void SetGuestList(List<String> guests){ this.guests = guests; }
-    public List<String> getGuestList(){ return guests; }
+    public void SetGuestList(Set<String> guests){ this.guests = guests; }
+    public Set<String> getGuestList(){ return guests; }
     public void addGuest(String guest){ guests.add(guest);}
     public void removeGuest(String guest){guests.remove(guest);}
 
@@ -63,14 +63,14 @@ public class CalendarEvent {
     protected CalendarEvent(){}
 
     public CalendarEvent(SimpleCalendar calendar, String title, Date eventDate,
-                         String location, List<String> guests, Date reminderDate, Boolean isReminderSent){
+                         String location, Set<String> guests, Date reminderDate, Boolean isReminderSent){
         this.calendar = calendar;
         this.title = title;
         this.eventDate = eventDate;
         this.location = location;
         if(guests != null) {
             this.guests = guests;
-        }else { this.guests = new ArrayList<String>(); }
+        }else { this.guests = new HashSet<String>(); }
         this.reminderDate = reminderDate;
         this.isReminderSent = isReminderSent;
     }

@@ -1,13 +1,14 @@
 package com.calendarproject.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 @RequestMapping("/")
 public class DefaultController {
-    @RequestMapping()
+
+/*    @RequestMapping()
     String defaultMethod(){
-        return "This is the default calendar management page";
-    }
+        return "index";
+    } */
 }

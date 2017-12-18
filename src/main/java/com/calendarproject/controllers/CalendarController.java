@@ -11,7 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.calendarproject.repositories.*;
 import com.calendarproject.model.*;
 
-@RestController
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
 @RequestMapping("/calendar")
 public class CalendarController {
 
@@ -25,9 +32,11 @@ public class CalendarController {
     }
 
     @RequestMapping(value = "/fetch/{id}", method=RequestMethod.GET)
-    SimpleCalendar getCalendar(@PathVariable String id){
+    String getCalendar(@PathVariable String id, Model model){
         Long idLong = new Long(id);
-        return calRepository.findById(idLong).orElse(null);
+        SimpleCalendar cal = calRepository.findById(idLong).orElse(null);
+        model.addAttribute("calendar", cal);
+        return "calendarEvents";
     }
 
     @RequestMapping(value = "/create/{id}", method=RequestMethod.POST)
@@ -36,8 +45,12 @@ public class CalendarController {
     }
 
     @RequestMapping()
-    Iterable<SimpleCalendar>  defaultCalendar(){
+    String defaultCalendar(Model model){
+        model.addAttribute("calendars", calRepository.findAll());
+        return "allCalendars";
+    }
+    /* Iterable<SimpleCalendar>  defaultCalendar(){
         return calRepository.findAll();
         //return "Default Calendar page (list of calendars?)";
-    }
+    }*/
 }

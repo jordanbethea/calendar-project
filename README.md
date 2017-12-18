@@ -1,6 +1,11 @@
 # Simple Restful calendar
 
 1. There should be a minimum of two models consisting of a calendar (name, user) and calendar events (calendar, title, event date and time, location, attendee list, reminder time, and whether the reminder has been sent).  
+    * There is some kind of bug with the guest list right now, something to do with how Hibernate loads certain types of data on eager initialization:
+    * https://stackoverflow.com/questions/6752424/elementcollection-java-persistence-hibernate-causes-loading-of-duplicate-inst
+    * https://hibernate.atlassian.net/browse/HHH-6783
+    * The short version is that if you add multiple guests, the system loads the events with an outer join, and so loads as many events as there are guests. According to hibernate, this is not a bug.
+    * As such, right now it only supports one guest per event, until I can figure out how to properly run lazy initialization.
 2. The app should expose a set of APIs to support the standard CRUD operations for calendar events.  
 3. Data access should be accomplished using anything other than raw SQL queries to the database (JPA, Hibernate, JDO, etc)  
 4. Implement APIs to allow a user to retrieve the list of events for a day, a week, or a month.

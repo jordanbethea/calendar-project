@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html" charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>All Existing Calendars</h1>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>User</td>
+            <td>Link</td>
+        </tr>
+        <tr th:each="calendar : ${calendars}">
+            <td th:text="${calendar.name}">FillerName</td>
+            <td th:text="${calendar.user}">FillerUser</td>
+            <td><a href="filler" th:href="@{/calendar/fetch/{id}(id=${calendar.id})}" th:text="${calendar.name}">Link</a></td>
+        </tr>
+    </table>
+</body>
+</html>
