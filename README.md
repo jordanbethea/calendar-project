@@ -18,3 +18,8 @@
 7. ~~Provide sample commands to retrieve a list of all events, a day/week/month's events, and for updating, deleting,  and creating new events, (curl, python script, java program, etc.).~~
 - ~~If you implement #6, provide instructions on setting up a default user so that we are able to login to your application~~
 
+To Run:
+1. Download code onto system where maven is installed
+2. Run 'mvn install' from root directory
+3. Run 'mvn spring-boot:run' from root directory. Make sure no other webservers are running
+4. Using web browser navigate to 'localhost:8080'
