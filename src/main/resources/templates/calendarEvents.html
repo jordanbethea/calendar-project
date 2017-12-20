@@ -7,6 +7,7 @@
 <body>
     <h1>Calendar and Events</h1>
     <a th:href="@{/calendar/{id}/event/new(id=${calendar.id})}">Create new event for this calendar</a>
+    <a th:href="@{/calendar/{id}/edit(id=${calendar.id})}">Edit Calendar</a>
     <p th:if="${calendar} == null" th:text="There is no calendar with that id">No Calendar</p>
     <div th:if="${calendar} != null">
         <p th:text="${calendar.name}">Name</p>
@@ -32,6 +33,10 @@
                        <li th:each="guest : ${event.guestList}"><p th:text="${guest}"></p></li>
                     </ul>
                 </td>
+                <td><a href="" th:href="@{/calendar/{calID}/event/{eventID}/edit(calID=${calendar.id},eventID=${event.id})}">Edit Event</a></td>
+                <td><form th:action="@{/calendar/{calID}/event/{eventID}/delete(calID=${calendar.id},eventID=${event.id})}" method="post">
+                    <fieldset><input type="submit" value="Delete event"/></fieldset>
+                </form></td>
             </tr>
         </table>
     </div>

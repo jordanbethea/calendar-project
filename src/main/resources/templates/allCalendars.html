@@ -17,6 +17,9 @@
             <td th:text="${calendar.name}">FillerName</td>
             <td th:text="${calendar.user}">FillerUser</td>
             <td><a href="filler" th:href="@{/calendar/fetch/{id}(id=${calendar.id})}" th:text="${calendar.name}">Link</a></td>
+            <td><a th:href="@{/calendar/{id}/edit(id=${calendar.id})}">Edit Calendar</a></td>
+            <td><form action="post" th:action="@{/calendar/{id}/delete(id=${calendar.id})}" method="post">
+                <fieldset><input type="submit" value="Delete Calendar"/></fieldset></form></td>
         </tr>
     </table>
 </body>

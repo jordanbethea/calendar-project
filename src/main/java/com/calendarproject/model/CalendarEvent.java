@@ -49,7 +49,7 @@ public class CalendarEvent {
     public void setLocation(String location){ this.location = location; }
     public String getLocation(){ return location; }
 
-    public void SetGuestList(Set<String> guests){ this.guests = guests; }
+    public void setGuestList(Set<String> guests){ this.guests = guests; }
     public Set<String> getGuestList(){ return guests; }
     public void addGuest(String guest){ guests.add(guest);}
     public void removeGuest(String guest){guests.remove(guest);}
